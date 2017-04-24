@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+  <meta charset = "UTF-8">
+  <script src = "http://code.jquery.com/jquery-1.11.3.js"></script>
+  <title>murikabe</title>
+  <script>
+    $(function() {
+      $('#start').click(function() {　// スタートタグをクリックしたら始まる
+        $(this).hide();
+
+        var FLEN = 16; //大きさ
+        var px = 0; py = 1; // プレイヤー座標
+        var pd = 1; //プレイヤー方向(0: 上 1:右 2:下 3:左)
+        var score = 0;
+
+        var field = '';
+        for (var y = 0; y < FLEN; y++){
+          for (var x = 0; x < FLEN; x++){
+            field += '<span id = "field_' + x + '_' + y + '">';
+            if (x == 0 || x == FLEN - 1 || y == 0 || y == FLEN -1){
+              field += '▪︎';
+            } else {
+              field += '◽︎';
+            }
+            field += '</span>';
+          }
+          field += '<br>';
+        }
+        $('#field').html(field);
+
+        $(document).mousedown(function(){
+          pd = (pd + 1) % 4;
+          return false;
+        })
+
+        var id = setInterval(function() {
+          if (pd == 0){
+            py--;　// 上
+          } else if (pd == 1){
+            px++; //右
+          } else if (pd == 2){
+            py++; //下
+          } else{
+            px--; //左
+          }
+
+          var item = $('#field_' + px + '_' + py);
+          if(item.html() == '◽︎'){
+            score++;
+            $('#score').html(score);
+          } else {
+            clearInterval(id);
+            $('#start').show();
+          }
+          item.html('●');
+        }, 100);
+      });
+    });
+
+    </script>
+  </head>
+
+  <body>
+    <div id = "field"></div>
+    <p><a id = "start" href = "javascript:void(0)">start</a> score: <span id = "score"></span></p>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+    <title>post card</title>
+    <script>
+      $(function() {
+        $('#new').click(function() {
+          $('<div class = "sticky">Drag & Double Click!</div>')
+          .appendTo('body')
+          .draggable()
+          .dbclick(function() {
+            $(this).wrapInner('<textarea></textarea>')
+              .find('textarea')
+              .focus()
+              .select()
+              .blur(function() {
+                $(this).parent().html($(this).val());
+              });
+          });
+        });
+      });
+    </script>
+
+    <style>
+      .sticky{
+        width: 250px;
+        height: 50px;
+        background-color: #aaf;
+        cursor: pointer;
+      }
+
+      textarea{
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <input id = "new" type = "button" value = "new">
+  </body>
+</html>

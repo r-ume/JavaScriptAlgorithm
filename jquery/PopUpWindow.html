@@ -1,0 +1,42 @@
+<script>
+(function($) {
+  $.ipop = function(){
+    var wx, wy; // ウィンドウの左上座標
+
+    // ウィンドウの座標を画面中央にする
+    wx = $(document).scrollLeft() + ($(window).width() - $('#ipop').outerWidth()) / 2;
+    if (wx < 0) wx = 0;
+    // scrollLeft() で左座標０を取得
+    //($(window).width() - $('#ipop').outerWidth()) / 2で中心座標取得
+    // if (wx < 0) wx = 0; もし画面を小さくしたら、wxの始まりが一番に端に来るようにする
+
+    wy = $(document).scrollTop() + ($(window).height() - $('#ipop').outerHeight()) / 2;
+    if (wy < 0) wy = 0;
+
+    // ポップアップウインドウを表示させる
+    $('#ipop'.css({top: wy, left: wx}).fadeIn(100));
+
+    // 閉じるボタンを押したとき
+    $('#ipop_close').click(function() {
+      $('#ipop').fadeOut(100);
+    });
+
+    // タイトルバーをドラッグしたとき
+    $('#ipop_title').mousedown(function(e) {
+      var mx = e.pageX;
+      var my = e.pageY;
+      $(document).on('mousemove.ipop', function(e) {
+        wx += e.pageX - mx;
+        wy += e.pageY - my;
+        $('#ipop').css({top: wy, left: wx});
+        mx = e.pageX;
+        my = e.pageY;
+        return false;
+      }).one('mouseup', function(e) {
+        $(document).off('mousemove.ipop');
+      });
+      return false;
+    });
+  }
+})(jQuery);
+</script>

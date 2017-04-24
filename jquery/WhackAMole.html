@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang = "ja">
+  <head>
+    <meta charset = "utf-8">
+    <script src = "http://code.jquery.com/jquery-1.11.3.js"></script>
+    <title>Whack A Mole</title>
+    <script>
+      $(function() {
+        $('a').click(function() { // aタブで囲まれている部分がクリックされた時に動く
+          var NUM = 5;// チェックボックスの数
+          var SIZE = 200; // ステージの大きさ
+          var count = 0; // 現在チェックされている数
+          var st = new Date().getTime(); // 開始時間
+          $('body').empty();
+
+          //チェックボックスの新しい位置を返す
+          function newPos(){
+            return{
+              left: Math.floor(Math.random() * SIZE),
+              top: Math.floor(Math.random() * SIZE)
+            };
+          }
+
+          // チェックボックスの生成・アニメーションの設定
+          for (var i = 0; i < NUM; i++){
+            $('<input type = checkbox">')
+            .appendTo('body')
+            .css('position', 'absolute')
+            .css(newPos())
+            .each(function() {
+              $(this).animate(newPos(), 3000, arguments.callee);　//3000は3秒
+              // arguments.calleeは匿名関数の再起処理などに使われる
+            });
+          }
+
+          // チェックボックスが押されたときの処理
+          $('input').click(function() {
+            $(this).stop().attr('disabled', 'disabled');// disabledがわからない
+            var t = (new Date().getTime() - st) / 1000;
+            if(++count >= NUM) alert('Clear! Time: ' + t + 'sec');
+          });
+
+          return false;
+            //aタグのデフォルトの動作（href="#" にジャンプ）を無効にしています。
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <a href ="#">click all of the boxes as soon as possible!</a>
+  </body>
+</html>

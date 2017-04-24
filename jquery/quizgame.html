@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang = "ja">
+  <head>
+  <meta charset = "UTF-8">
+  <script src = "http://code.jquery.com/jquery-1.11.3.js"></script>
+  <title>クイズ</title>
+  <script>
+    $(function(){ //$(関数)を書くと、htmlが表示された時点で$が呼び起こされる
+      $('input').click(function(){　// inputタグのものをクリックするとイベントが発生する
+        if($(this).val() == 2) alert('正解！');// thisはクリックされたinput要素を指す
+                                                // val関数はvalue要素を取得する
+        else alert('はずれ！');
+      });
+    });
+  </script>
+  </head>
+
+  <body>
+    <p>What is your favorite food?</p>
+    <p>
+      <input type = "radio" name = "food" value = "1">soba
+      <input type = "radio" name = "food" value = "2">udon
+      <input type = "radio" name = "food" value = "3">ramen
+    </p>
+  </body>
+  </html>

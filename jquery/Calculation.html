@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQueryでカウントアップ</title>
+
+<style type="text/css">
+/*--------------------------------
+初期設定
+--------------------------------*/
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ ゴシック", "MS Gothic", sans-serif;
+	zoom: 1;
+}
+body{
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.4;
+	color: #333;
+	background: #FFF;
+}
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: inherit;
+}
+img{
+	vertical-align: top;
+}
+a{
+	text-decoration: underline;
+	color: #6a5d4f;
+	font-weight: normal;
+}
+a:hover{
+	text-decoration: none;
+}
+a img{
+	border: none;
+}
+ul li,
+ol li{
+	list-style: none;
+}
+/*--clearfix--*/
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+
+
+section{
+	clear: both;
+	width: 480px;
+	padding: 40px 0;
+	margin: 0 auto;
+}
+h1{
+	margin-bottom: 1em;
+}
+.priceBox{
+	width: 320px;
+	padding: 20px 0;
+	margin: 10px 0;
+	border-top: solid 1px #999;
+	border-bottom: solid 1px #999;
+	float: right;
+}
+.priceBox dt{
+	color: #777;
+	font-weight: bold;
+	float: left;
+}
+.priceBox dd{
+	float: right;
+}
+.price{
+	margin-bottom: 0.5em;
+	color: #C30;
+}
+.price .total{
+	font-size: 2em;
+	font-weight: bold;
+}
+.optionsSet{
+	clear: both;
+}
+.optionsSet p{
+	margin-bottom: 0.5em;
+	text-align: right;
+}
+</style>
+
+<script type="text/javascript" src="jquery-2.2.4.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+	/*-------------------------------
+	カウントアップ
+	-------------------------------*/
+	/* 初期値の設定 */
+	var priceBase = removeFigure($(".basePrice1").text()); //基本価格を取得
+	var priceOptions = removeFigure($(".optionTotal").text()); //オプション合計を取得
+	var priceTotal = priceBase + priceOptions; //基本価格とオプション合計から総額を計算
+	var optionsPrice = 0; //加算するオプション価格の初期設定
+	var basePrice = priceBase; //数量変更後の基本価格を変更
+
+	$(".priceTotal").text(addFigure(priceTotal)); //総額を反映
+
+	$(".options1 :checkbox").click(function(){
+		optionsPrice = 0; //加算するオプション価格を初期化
+		$(".options1 :checkbox:checked").each(function(){
+			//指定された範囲の中にある、すべてのチェックされたチェックボックスと同じラベル内にある、.optionPriceのテキストを取得
+			optionsPrice = optionsPrice + removeFigure($(this).parent("label").find(".optionPrice").text());
+		});
+		var timerPrice = setInterval(function(){
+			if(priceOptions != optionsPrice){ //計算前と計算後の値が同じになるまで実行する
+				if(priceOptions < optionsPrice){//元の数が計算後の数より大きいか小さいかを判定
+					priceOptions = priceOptions + Math.round((optionsPrice - priceOptions)/2); //値を反比例して加減する
+				}else{
+					priceOptions = priceOptions - Math.round((priceOptions - optionsPrice)/2);
+				}
+
+				//算出されたオプション合計と総額をHTMLに反映
+				$(".optionTotal1").text(addFigure(priceOptions));
+				$(".total1").text(addFigure(priceBase + priceOptions));
+			}else{
+				clearInterval(timerPrice);
+			}
+		}, 17);
+	});
+
+	$("select.num").change(function(){
+		//セレクトボックス内の選択されているoptionのdata-price属性を取得
+		basePrice = removeFigure($(this).find("option:selected").attr("data-price"));
+
+		var timerPrice = setInterval(function(){
+			if(priceBase != basePrice){
+				if(priceBase < basePrice){
+					priceBase = priceBase + Math.round((basePrice - priceBase)/2);
+				}else{
+					priceBase = priceBase - Math.round((priceBase - basePrice)/2);
+				}
+
+				//算出された基本価格と総額をHTMLに反映
+				$(".basePrice1").text(addFigure(priceBase + priceOptions));
+				$(".total1").text(addFigure(priceBase + priceOptions));
+			}else{
+				clearInterval(timerPrice);
+			}
+
+		}, 17);
+	});
+
+
+
+
+	/*-------------------------------
+	カンマ処理
+	-------------------------------*/
+	function addFigure(str) {
+		var num = new String(str).replace(/,/g, "");
+		while(num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")));
+		return num;
+	}
+
+	function removeFigure(str) {
+		var num = new String(str).replace(/,/g, "");
+		num = Number(num);
+		return num;
+	}
+
+});
+</script>
+
+</head>
+
+<body>
+
+<section class="cf">
+	<h1>反比例して増減</h1>
+	<div class="optionsSet">
+		<p>
+			数量：<select class="num num1">
+				<option value="1" data-price="1,000">1個</option>
+				<option value="2" data-price="2,000">2個</option>
+				<option value="5" data-price="5,000">5個</option>
+				<option value="10" data-price="10,000">10個</option>
+				<option value="20" data-price="20,000">20個</option>
+			</select>
+		</p>
+		<p class="options1"><label><input type="checkbox" value="1"> オプション1 <span class="optionPrice">2,000</span>円</label>　　<label><input type="checkbox" value="1"> オプション2 <span class="optionPrice">4,500</span>円</label></p>
+	</div>
+	<div class="priceBox">
+		<dl class="price cf"><dt>基本価格</dt><dd><span class="basePrice basePrice1">1,000</span>円</dd></dl>
+		<dl class="price cf"><dt>オプション価格</dt><dd><span class="optionTotal optionTotal1">0</span>円</dd></dl>
+		<dl class="price cf"><dt>総額</dt><dd><span class="total total1">1,000</span>円</dd></dl>
+	</div>
+</section>
+
+</body>
+</html>
