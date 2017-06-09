@@ -1,3 +1,5 @@
+// https://www.youtube.com/watch?v=mK2U9fMa9Rw
+
 $(document).ready(function(){
 	var window_width        = $(window).width();
 	var main_width          = $(".main_container").width();
