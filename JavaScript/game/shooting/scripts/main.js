@@ -32,6 +32,12 @@ window.onload = function(){
 	var character = new Character();
 	character.init(10);
 
+	// making instances of CharacterShot class
+	var characterShot = new Array(CHARACTER_SHOT_MAX_COUNT);
+	for(var i = 0; i < CHARACTER_SHOT_MAX_COUNT; i++){
+		characterShot[i] = new CharacterShot();
+	}
+
 	(function () {
 		// Reload html
 		info.innerHTML = mouse.x + ':' + mouse.y;
@@ -52,6 +58,39 @@ window.onload = function(){
 		ctx.arc(character.position.x, character.position.y, character.size, 0, Math.PI * 2, false);
 		
 		// draw the player
+		ctx.fill();
+
+		if(permit_fire){
+			for(var i = 0; i < CHARACTER_SHOT_MAX_COUNT; i++){
+				if(!characterShot[i].alive){
+					// start position is 
+					characterShot[i].set(character.position, 3, 5);
+
+					break;
+				}
+			}
+
+			permit_fire = false;
+		}
+
+		ctx.beginPath();
+
+		for(i = 0; i < CHARACTER_SHOT_MAX_COUNT; i++){
+			if(characterShot[i].alive){
+				characterShot[i].move();
+
+				ctx.arc(
+					characterShot[i].position.x,
+					characterShot[i].position.y,
+					characterShot[i].size,
+					0, Math.PI * 2, false
+				);
+
+				ctx.closePath();
+			}
+		}
+
+		ctx.fillStyle = CHARACTER_SHOT_COLOR;
 		ctx.fill();
 
 		if(run){setTimeout(arguments.callee, fps);}
