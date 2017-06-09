@@ -5,6 +5,7 @@ var run = true;
 var fps = 1000 / 30;
 var mouse = new Point();
 var ctx;
+var CHARA_COLOR = 'rgba(0, 0, 255, 0.75)';
 
 // - main ---------------------------
 window.onload = function(){
@@ -22,6 +23,10 @@ window.onload = function(){
 
 	info = document.getElementById('info');
 
+	// making an instance of Character class
+	var character = new Character();
+	character.init(10);
+
 	(function () {
 		// Reload html
 		info.innerHTML = mouse.x + ':' + mouse.y;
@@ -30,8 +35,18 @@ window.onload = function(){
 		// declaring a path is important when it comes to canvas2d
 		// need to set the properties(position, color, and etc)
 		ctx.beginPath();
-		ctx.fillStyle = 'rgba(0, 0, 255, 0.75)';
-		ctx.arc(mouse.x, mouse.y, 10, 0, Math.PI * 2, false);
+
+		// setting the position of the player.
+		character.position.x = mouse.x;
+		character.position.y = mouse.y;
+
+		// setting character's color
+		ctx.fillStyle = CHARA_COLOR;
+
+		// setting the path
+		ctx.arc(character.position.x, character.position.y, character.size, 0, Math.PI * 2, false);
+		
+		// draw the player
 		ctx.fill();
 
 		if(run){setTimeout(arguments.callee, fps);}
