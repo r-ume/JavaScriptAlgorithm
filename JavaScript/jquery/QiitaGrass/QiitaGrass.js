@@ -19,6 +19,17 @@ $(function(){
 
 	function onSucceed(data){
 		console.log(data);
-	};
+		var item_dates = {};
+		$.each(data, function(index, value){
+			var created_at = format(d3.time.day.floor(new Date(value['created_at'])));
+			if (created_at in item_dates){
+				item_dates[created_at]++;
+			} else{
+				item_dates[created_at] = 1;
+			}
+		});
 
+		drawCalendar(item_dates);
+		$("#btn-submit").prop("disabled", false);
+	};
 });
