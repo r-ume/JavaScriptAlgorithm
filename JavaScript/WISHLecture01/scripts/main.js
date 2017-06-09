@@ -42,5 +42,38 @@ $(document).ready(function(){
 		}
 	});
 
+	$(".see_previous").click(function(){
+		if(slide_number > 0){
+			slide_number--;
+
+			if(slide_number == 0){
+				$(".see_previous").animate({
+					opacity: 0
+				});
+			}else {
+				$(".see_previous").animate({
+					opacity: 1
+				});
+			}
+
+			if(slide_number == 6){
+				$(".see_next").animate({
+					opacity: 0
+				});
+			}else{
+				$(".see_next").animate({
+					opacity: 1
+				});
+			}
+
+			var item_width   = $(".item").width();
+			var pixels_moved = item_width * slide_number;
+		
+			long_container.animate({
+				marginLeft: -pixels_moved
+			});
+		}
+	});
+
 
 });
