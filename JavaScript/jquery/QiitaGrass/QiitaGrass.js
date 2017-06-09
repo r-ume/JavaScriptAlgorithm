@@ -1,3 +1,5 @@
+// http://qiita.com/snaka/items/7f4e5653496689077ce5
+
 $(function(){
 
 	// getting user_id from the form
@@ -31,5 +33,56 @@ $(function(){
 
 		drawCalendar(item_dates);
 		$("#btn-submit").prop("disabled", false);
-	};
+	}
+
+	var drawCalendar = (function(){
+
+		var CELL_SIZE = 15;
+		var LABEL_HEIGHT = 11;
+		var MARGIN_LEFT = 25;
+		var MARGIN_TOP = 15;
+
+		var rangeBegin = d3.time.day.offset(new Date, -365);
+		var rangeEnd = new Date;
+		var dateRange = d3.time.days(rangeBegin, rangeEnd);
+		var monthRange = d3.time.months(rangeBegin, rangeEnd);
+
+		var offsetX = (function(){
+			var firstYearOffset = d3.time.weekOfYear(rangeBegin) * -1;
+			var boundryDate = d3.time.years(rangeBegin, rangeEnd)[0];
+			var lastDayOfFirstYear = d3.time.day.offset(boundryDate, -1);
+			var lastWeekOfFirstYear = d3.time.weekOfYear(lastWeekOfFirstYear);
+			var lastYearOffset = d3.time.weekOfYear(lastWeekOfFirstYear) + firstYearOffset;
+
+			return function(sourceDate){
+				if(sourceDate.getFullYear() == rangeBegin.getFullYear())
+					return firstYearOffset;
+				return lastYearOffset;
+			}	
+		})();
+		
+
+		return function(originalDataset){
+
+			function objectFilter(obj, predicate){
+				var result = {}, key;
+				for(key in obj){
+					// need to ask someone familiar with javascript
+					// no idea what predicate function is coming from
+					if(obj.hasOwnProperty(key) && predicate(key, obj[key])){
+						result[key] = obj[key];
+					}
+				}
+				return result;	
+			}
+
+			var dataset = objectFilter(originalDataset, function(k, v){
+				var aDay = new Date(k);
+				return rangeBegin <= aDay && aDay <= d3.time.day.offset(rangeEnd, 1);
+			});
+
+		}
+	});
+
+
 });
