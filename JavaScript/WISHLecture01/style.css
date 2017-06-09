@@ -12,13 +12,16 @@
 }
 
 .main_container{
-	width: 100px;
+	width: 1000px;
 	display: block;
-	marigin: 0 auto;	
+	margin: 0 auto;
 	height: 300px;
 	align-self: center;
-	background-color: red;
 	position: relative;
+	overflow: hidden;
+
+	box-shadow: 0px 0px 4px black;
+	border-radius: 5px;
 }
 
 .long_container{
@@ -27,6 +30,7 @@
 
 .item{
 	height: 100%;
+	width: 200px;
 	float: left;
 }
 
@@ -34,20 +38,10 @@
 .see_next{
 	height: 100%;
 	width: 50px;
-	background-color: green;
 	position: absolute;
 	left: 0;
+	display: flex;
 	transition: all 0.2s ease-in-out;
-}
-
-.see_previous:hover{
-	background-color: rgba(0, 0, 0, 0, 5);
-}
-
-.arrow_previous,
-.arrow_next{
-	width: 100%;
-	align-self: center;
 }
 
 .see_next{
@@ -56,5 +50,66 @@
 }
 
 .arrow_next{
-	transform: rotate(100deg);
+	transform: rotate(180deg);
+}
+
+.arrow_previous,
+.arrow_next{
+	width: 100%;
+	align-self: center;
+}
+
+.see_previous:hover,
+.see_next:hover{
+	background-color: rgba(0,0,0,0.5);	
+}
+
+#one,
+#two,
+#three,
+#four,
+#five,
+#six,
+#seven,
+#eight,
+#nine{
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+#one{
+	background-image: url("img1.jpg");
+}
+
+#two{
+	background-image: url("img2.jpg");
+}
+
+#three{
+	background-image: url("img3.jpg");
+}
+
+#four{
+	background-image: url("img4.jpg");
+}
+
+#five{
+	background-image: url("img5.jpg");
+}
+
+#six{
+	background-image: url("img6.jpg");
+}
+
+#seven{
+	background-image: url("img7.jpg");
+}
+
+#eight{
+	background-image: url("img8.jpg");
+}
+
+#nine{
+	background-image: url("img9.jpg");
 }
