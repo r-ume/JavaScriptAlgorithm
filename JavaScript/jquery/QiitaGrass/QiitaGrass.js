@@ -61,7 +61,6 @@ $(function(){
 			}	
 		})();
 		
-
 		return function(originalDataset){
 
 			function objectFilter(obj, predicate){
@@ -81,8 +80,14 @@ $(function(){
 				return rangeBegin <= aDay && aDay <= d3.time.day.offset(rangeEnd, 1);
 			});
 
+			var colorScale = d3.scale.ordinal().domain([1, 2, 3]).range(["#f7fcb9", "#addd8e", "#31a354"]);
+
+			var color = function(f){
+				return colorScale(colorScale(f));
+			}
+
 		}
 	});
 
-
-});
+ 
+})(); // drawCalendar
