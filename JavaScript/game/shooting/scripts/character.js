@@ -63,7 +63,7 @@ Enemy.prototype.move = function(){
 			this.position.x += 2;
 
 			if(this.position.x > this.size + screenCanvas.width){
-				this.alive = alive;
+				this.alive = false;
 			}
 			break;
 		case 1:
