@@ -5,14 +5,20 @@ var fps = 1000 / 30;
 var mouse = new Point();
 var ctx;
 var permit_fire = false;
+var counter = 0;
 
 // - constant variables -------
 var CHARACTER_COLOR = 'rgba(0, 0, 255, 0.75)';
 var CHARACTER_SHOT_COLOR = 'rgba(0, 255, 0, 0.75)';
+var ENEMY_COLOR = 'rgba(255, 0, 0, 0.75)'
 var CHARACTER_SHOT_MAX_COUNT = 10;
+var ENEMY_MAX_COUNT = 10;
 
 // - main ---------------------------
 window.onload = function(){
+	var i, j;
+	var p = new Point();
+
 	// initializing the screen
 	screenCanvas = document.getElementById('screen');
 	screenCanvas.width = 256;
@@ -32,6 +38,11 @@ window.onload = function(){
 	var character = new Character();
 	character.init(10);
 
+	var enemy = new Array(ENEMY_MAX_COUNT);
+	for(var i = 0; i < ENEMY_MAX_COUNT; i++){
+		enemy[i] = new Enemy();
+ 	}
+
 	// making instances of CharacterShot class
 	var characterShot = new Array(CHARACTER_SHOT_MAX_COUNT);
 	for(var i = 0; i < CHARACTER_SHOT_MAX_COUNT; i++){
@@ -39,6 +50,8 @@ window.onload = function(){
 	}
 
 	(function () {
+		counter++;
+
 		// Reload html
 		info.innerHTML = mouse.x + ':' + mouse.y;
 
@@ -92,6 +105,43 @@ window.onload = function(){
 
 		ctx.fillStyle = CHARACTER_SHOT_COLOR;
 		ctx.fill();
+
+		if(counter % 100 === 0){
+			for(var i = 0; i < ENEMY_MAX_COUNT; i++){
+				if(!enemy[i].alive){
+					type = (counter % 200) / 100;
+
+					var enemySize = 15;
+					p.x = -enemySize + (screenCanvas.width + enemySize * 2) * type
+					p.y = screenCanvas.height / 2;
+
+					enemy[i].set(p, enemySize, type);
+
+					break;
+				}
+			}
+		}
+
+		ctx.beginPath();
+
+		for(var i = 0; i < ENEMY_MAX_COUNT; i++){
+			if(enemy[i].alive){
+				enemy[i].move();
+
+				ctx.arc(
+					enemy[i].position.x,
+					enemy[i].position.y,
+					enemy[i].size,
+					0, Math.PI * 2, false
+				);
+
+				ctx.closePath();
+			}
+		}
+
+		ctx.fillStyle = ENEMY_COLOR;
+
+		ctx.fill()
 
 		if(run){setTimeout(arguments.callee, fps);}
 

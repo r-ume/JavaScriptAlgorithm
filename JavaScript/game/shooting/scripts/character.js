@@ -40,7 +40,7 @@ function Enemy(){
 	this.size = 0;
 	this.type = 0;
 	this.param = 0;
-	this.alive = alive;
+	this.alive = false;
 }
 
 Enemy.prototype.set = function(p, size, type){
@@ -62,7 +62,7 @@ Enemy.prototype.move = function(){
 		case 0:
 			this.position.x += 2;
 
-			if(this.positiion.x > this.size + screenCanvas.width){
+			if(this.position.x > this.size + screenCanvas.width){
 				this.alive = alive;
 			}
 			break;
