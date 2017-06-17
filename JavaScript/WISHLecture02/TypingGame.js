@@ -49,6 +49,9 @@ phina.define("MainScene", {
 			this.scoreLabel.text = this.score + '';
 		}
 
+		if(event.keyCode === 32){
+			this.app.stop();
+		}
 	},
 
 	update: function(app){
@@ -90,6 +93,11 @@ phina.define('Word', {
 
 	update: function(){
 		this.y += 8;
+
+		if(this.y > 960){
+			this.flare('attack');
+			this.remove();
+		}
 	},
 
 	disappear: function(){
