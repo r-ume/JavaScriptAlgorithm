@@ -44,6 +44,11 @@ phina.define("MainScene", {
 			return false;
 		});
 
+		if(result){
+			this.score += 1;
+			this.scoreLabel.text = this.score + '';
+		}
+
 	},
 
 	update: function(app){
