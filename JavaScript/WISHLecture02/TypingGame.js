@@ -32,6 +32,21 @@ phina.define("MainScene", {
 		this.scoreLabel.text = this.score + '';
 	},
 
+	onkeydown: function(event){
+		var character = String.fromCharCode(event.keyCode);
+		var wordGroup = this.wordGroup;
+		var result = wordGroup.children.some(function(word){
+			if(word.enable && word.text == character){
+				console.log("disappear");
+				// word.disappear();
+				return true;
+			}
+
+			return false;
+		});
+
+	},
+
 	update: function(app){
 		if(app.frame % 16 === 0){
 			this.createWord();
