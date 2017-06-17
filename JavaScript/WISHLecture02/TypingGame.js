@@ -33,12 +33,11 @@ phina.define("MainScene", {
 	},
 
 	onkeydown: function(event){
-		var character = String.fromCharCode(event.keyCode);
+		var input_character = String.fromCharCode(event.keyCode);
 		var wordGroup = this.wordGroup;
 		var result = wordGroup.children.some(function(word){
-			if(word.enable && word.text == character){
-				console.log("disappear");
-				// word.disappear();
+			if(word.enable && word.text == input_character){
+				word.disappear();
 				return true;
 			}
 
@@ -86,6 +85,19 @@ phina.define('Word', {
 
 	update: function(){
 		this.y += 8;
+	},
+
+	disappear: function(){
+		this.enable = false;
+		this.tweener
+				.to({
+					scaleX: 2, 
+					scaleY: 2,
+					alpha: 0,
+				}, 250)
+				.call(function(){
+					this.target.remove();
+				});
 	}
 });
 
