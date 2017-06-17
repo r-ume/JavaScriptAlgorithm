@@ -33,7 +33,21 @@ phina.define("MainScene", {
 		this.score = 0;
 		this.scoreLabel.text = this.score + '';
 	}
-})
+});
+
+phina.define('Word'{
+	superClass: 'Button',
+
+	init: function(word){
+		this.superInit({
+			width:  PIECE_SIZE,
+			height: PIECE_SIZE,
+			text:   word
+		});
+
+		this.enable = true;
+	},
+});
 
 phina.main(function() {
 	var app = GameApp({
