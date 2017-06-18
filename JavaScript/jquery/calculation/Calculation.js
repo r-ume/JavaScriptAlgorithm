@@ -3,13 +3,23 @@
 $(function(){
 
   // global variables
-  var priceBase = $(".basePrice1").text();
-  var priceOptions = $("optionTotal").text();
-  var priceTotal = priceBase + priceOptions;
+  var basePrice = removeComma($(".basePrice1").text());
+  var priceOptions = removeComma($("optionTotal").text());
+  var priceTotal = basePrice + priceOptions;
   var optionsPrice = 0;
-  var basePrice = priceBase;
+  // var basePrice = priceBase;
 
   $(".priceTotal").text(addComma(priceTotal));
+
+  $(".options1 :checkbox").click(function(){
+  	optionsPrice = 0;
+
+  	$(".options1 :checkbox:checked").each(function(){
+  		// when parent has a parameter, the selector within the parent function becomes a parent dom.
+  		optionsPrice = optionsPrice + removeComma($(this).parent("label").find(".optionPrice").text());
+  	})
+  });
+
 
 
 });
