@@ -107,6 +107,15 @@ $(function(){
                 .attr("fill", function(d){ return colorScale(countScale(dataset[d])); })
                 .append("title")
                     .text(function(d) { return d + " (投稿: " + dataset[d] + "件)"; });
+
+            dayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+            svg.selectAll(".dayLabel")
+                .data(d3.range(7))
+                .enter()
+                .append("text")
+                    .attr("class", "dayLabel")
+                    .attr("x", 0)
+                    .attr("y", function(d) { return d * CELL_SIZE + LABEL_HEIGHT + MARGIN_TOP; })
         }
       });
 
