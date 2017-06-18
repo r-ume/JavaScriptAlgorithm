@@ -51,8 +51,8 @@ $(function(){
             var firstYearOffset = d3.time.weekOfYear(rangeBegin) * -1;
             var boundryDate = d3.time.years(rangeBegin, rangeEnd)[0];
             var lastDayOfFirstYear = d3.time.day.offset(boundryDate, -1);
-            var lastWeekOfFirstYear = d3.time.weekOfYear(lastWeekOfFirstYear);
-            var lastYearOffset = d3.time.weekOfYear(lastWeekOfFirstYear) + firstYearOffset;
+            var lastWeekOfFirstYear = d3.time.weekOfYear(lastDayOfFirstYear);
+            var lastYearOffset = d3.time.weekOfYear(lastDayOfFirstYear) + firstYearOffset;
 
             return function(sourceDate){
                 if(sourceDate.getFullYear() == rangeBegin.getFullYear())
@@ -115,7 +115,10 @@ $(function(){
                 .append("text")
                     .attr("class", "dayLabel")
                     .attr("x", 0)
-                    .attr("y", function(d) { return d * CELL_SIZE + LABEL_HEIGHT + MARGIN_TOP; })
+                    .attr("y", function(d) { return d * CELL_SIZE + LABEL_HEIGHT + MARGIN_TOP; }) 
+                    .attr("font-size", LABEL_HEIGHT)
+                    .attr("fill", "gray")
+                    .text(function(d) { return dayLabels[d]; });
 
             monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             svg.selectAll(".monthLabel")
@@ -123,7 +126,7 @@ $(function(){
                 .enter()
                 .append("text")
                 .attr("class", "monthLabel")
-                .attr("x", function(d){ return (d3.time.weekOfYear(d).offsetX(d) * CELL_SIZE + MARGIN_LEFT; })
+                .attr("x", function(d){ return (d3.time.weekOfYear(d).offsetX(d)) * CELL_SIZE + MARGIN_LEFT; })
                 .attr("y", LABEL_HEIGHT)
                 .attr("font-size", LABEL_HEIGHT)
                 .attr("fill", "gray")
