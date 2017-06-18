@@ -37,6 +37,10 @@ $(function(){
   	}, 17);
   });
 
+  $("select.num").change(function(){
+  	var selectedPrice = removeComma($(this).find("option:selected").attr("data-price"));
+  });
+
 });
 
 // A function that adds comma to yen
