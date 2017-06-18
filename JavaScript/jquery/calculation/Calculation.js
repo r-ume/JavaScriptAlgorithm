@@ -3,11 +3,10 @@
 $(function(){
 
   // global variables
-  var basePrice = removeComma($(".basePrice1").text());
+  var initialPrice = removeComma($(".basePrice1").text());
   var priceOptions = removeComma($("optionTotal").text());
-  var priceTotal = basePrice + priceOptions;
+  var priceTotal = initialPrice + priceOptions;
   var optionsPrice = 0;
-  // var basePrice = priceBase;
 
   $(".priceTotal").text(addComma(priceTotal));
 
@@ -17,10 +16,26 @@ $(function(){
   	$(".options1 :checkbox:checked").each(function(){
   		// when parent has a parameter, the selector within the parent function becomes a parent dom.
   		optionsPrice = optionsPrice + removeComma($(this).parent("label").find(".optionPrice").text());
-  	})
+  	});
+
+  	var timerPrice = setInterval(function(){
+  		// The Animation goes on until optionsTotal and input optionsPrice get the same. 
+  		if(priceOptions != optionsPrice){
+  			if(priceOptions < optionsPrice){
+  				// To make it look like an animation, 
+  				// the half of the difference between optionsTotal and optionsPrice gets added up.
+  				priceOptions = priceOptions + Math.round((optionsPrice - priceOptions) / 2); 
+  			} else{
+  				priceOptions = priceOptions - Math.round((priceOptions - optionsPrice) / 2);
+  			}
+
+  			$(".optionTotal").text(addComma(priceOptions));
+  			$(".total1").text(addComma(initialPrice + priceOptions));
+  		}else{
+  			clearInterval(timerPrice);
+  		}
+  	}, 17);
   });
-
-
 
 });
 
