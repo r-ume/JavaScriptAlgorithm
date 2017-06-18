@@ -116,8 +116,19 @@ $(function(){
                     .attr("class", "dayLabel")
                     .attr("x", 0)
                     .attr("y", function(d) { return d * CELL_SIZE + LABEL_HEIGHT + MARGIN_TOP; })
-        }
-      });
 
- 
-})(); // drawCalendar
+            monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            svg.selectAll(".monthLabel")
+                .data(monthRange)
+                .enter()
+                .append("text")
+                .attr("class", "monthLabel")
+                .attr("x", function(d){ return (d3.time.weekOfYear(d).offsetX(d) * CELL_SIZE + MARGIN_LEFT; })
+                .attr("y", LABEL_HEIGHT)
+                .attr("font-size", LABEL_HEIGHT)
+                .attr("fill", "gray")
+                .text(function(d) { return monthLabels[d.getMonth()]; });
+          }
+    })(); // drawCalendar
+
+});
