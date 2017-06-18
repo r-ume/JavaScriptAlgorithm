@@ -39,32 +39,47 @@ $(function(){
 
   $("select.num").change(function(){
   	var selectedPrice = removeComma($(this).find("option:selected").attr("data-price"));
+
+  	var timerPrice = setInterval(function(){
+  		if(initialPrice != selectedPrice){
+  			if(initialPrice < selectedPrice){
+  				initialPrice = initialPrice + Math.round((selectedPrice - initialPrice) / 2); 
+  			} else {
+  				initialPrice = initialPrice - Math.round((initialPrice - selectedPrice) / 2);
+  			}
+
+  			$(".basePrice1").text(addComma(initialPrice + priceOptions));
+  			$(".total1").text(addComma(initialPrice + priceOptions));
+  		} else {
+  			clearInterval(timerPrice);
+  		}
+  	}, 17);
   });
 
+	// A function that adds comma to yen
+	function addComma(str){
+	  // 正規表現
+
+	  // g - グローバルオプション 複数回マッチする
+	  // ^ - 入力の先頭にはマッチする
+	  // 例えば /^A/ は "an A" の 'A' にはマッチするが、"An E" の 'A' にはマッチしない。
+
+	  // \d - 数字
+	  // + 直前の文字の連続でもマッチするようにする。
+	  // -（ハイフンがわからない) 
+
+	  // カンマがあるところを先になくす。
+	  var num = new String(str).replace(/,/g, "");
+	  var yenPattern = /^(-?\d+)(\d{3})/;
+	  var numWithCommna = num.replace(yenPattern, "$1,$2");
+	  return numWithCommna;
+	}
+
+	// A function that removes a comma from yen
+	function removeComma(str){
+	  var num = new String(str).replace(/,/g, "");
+	  num = Number(num);
+	  return num;
+	}
+
 });
-
-// A function that adds comma to yen
-function addComma(str){
-  // 正規表現
-
-  // g - グローバルオプション 複数回マッチする
-  // ^ - 入力の先頭にはマッチする
-  // 例えば /^A/ は "an A" の 'A' にはマッチするが、"An E" の 'A' にはマッチしない。
-
-  // \d - 数字
-  // + 直前の文字の連続でもマッチするようにする。
-  // -（ハイフンがわからない) 
-
-  // カンマがあるところを先になくす。
-  var num = new String(str).replace(/,/g, "");
-  var yenPattern = /^(-?\d+)(\d{3})/;
-  var numWithCommna = num.replace(yenPattern, "$1,$2");
-  return numWithCommna;
-}
-
-// A function that removes a comma from yen
-function removeComma(str){
-  var num = new String(str).replace(/,/g, "");
-  num = Number(num);
-  return num;
-}
