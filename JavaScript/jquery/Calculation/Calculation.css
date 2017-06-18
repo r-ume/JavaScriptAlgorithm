@@ -1,0 +1,95 @@
+/*--------------------------------
+初期設定
+--------------------------------*/
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ ゴシック", "MS Gothic", sans-serif;
+	zoom: 1;
+}
+body{
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.4;
+	color: #333;
+	background: #FFF;
+}
+table
+{
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: inherit;
+}
+img{
+	vertical-align: top;
+}
+/*--------------------------------
+初期設定
+--------------------------------*/
+
+a{
+	text-decoration: underline;
+	color: #6a5d4f;
+	font-weight: normal;
+}
+a:hover{
+	text-decoration: none;
+}
+a img{
+	border: none;
+}
+ul li,
+ol li{
+	list-style: none;
+}
+/*--clearfix--*/
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+.cf:after {
+    clear:both;
+}
+
+
+section{
+	clear: both;
+	width: 480px;
+	padding: 40px 0;
+	margin: 0 auto;
+}
+h1{
+	margin-bottom: 1em;
+}
+.priceBox{
+	width: 320px;
+	padding: 20px 0;
+	margin: 10px 0;
+	border-top: solid 1px #999;
+	border-bottom: solid 1px #999;
+	float: right;
+}
+.priceBox dt{
+	color: #777;
+	font-weight: bold;
+	float: left;
+}
+.priceBox dd{
+	float: right;
+}
+.price{
+	margin-bottom: 0.5em;
+	color: #C30;
+}
+.price .total{
+	font-size: 2em;
+	font-weight: bold;
+}
+.optionsSet{
+	clear: both;
+}
+.optionsSet p{
+	margin-bottom: 0.5em;
+	text-align: right;
+}
