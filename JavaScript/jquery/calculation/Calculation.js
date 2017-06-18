@@ -38,6 +38,7 @@ $(function(){
   });
 
   $("select.num").change(function(){
+  	// get the price in selected tags that has the attribute "data-price"
   	var selectedPrice = removeComma($(this).find("option:selected").attr("data-price"));
 
   	var timerPrice = setInterval(function(){
