@@ -7,31 +7,6 @@ export default class WISHMaker {
         this.channel = channel;
     }
 
-    postSlack(message){
-        const method = 'post';
-        const payload = {
-            'channel': `#${this.channel}`,
-            'text': message
-        }; 
-        const params = {
-            'method': method,
-            'contentType' : 'application/json',
-            'payload': JSON.stringify(payload)
-        };
-        const response = UrlFetchApp.fetch(this.url, params);
-        Logger.log(response);
-    }
-
-    static getToday(){
-        const today = Moment.moment().format('M月DD日');
-        return today;
-    }
-
-    static getThisMonth(){
-        const thisMonth = Moment.moment().format('M');
-        return thisMonth;
-    }
-
     getThisMonthSheet(){
         const thisMonthSheet = this.parentSheets.getSheetByName(`${WISHMaker.getThisMonth()}月`);
         return thisMonthSheet;
@@ -63,6 +38,33 @@ export default class WISHMaker {
             let todayRA = thisMonthSheet.getRange(j, getTodaysRAsCellNum).getValue();
             this.postSlack(`<${todayRA}>`);
         }
+    }
+
+    postSlack(message){
+        const method = 'post';
+        const payload = {
+            'channel': `#${this.channel}`,
+            'text': message
+        }; 
+        const params = {
+            'method': method,
+            'contentType' : 'application/json',
+            'payload': JSON.stringify(payload)
+        };
+        const response = UrlFetchApp.fetch(this.url, params);
+        Logger.log(response);
+    }
+
+    // -- class method
+
+    static getToday(){
+        const today = Moment.moment().format('M月DD日');
+        return today;
+    }
+
+    static getThisMonth(){
+        const thisMonth = Moment.moment().format('M');
+        return thisMonth;
     }
 
 }
