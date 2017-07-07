@@ -47,4 +47,9 @@ $(function(){
 
       e.preventDefault();
   });
+
+  $('.clear').on('click', function(e) { 
+    var initialPrice = 0;
+    $(".basePrice1").text(initialPrice);
+  });
 });
