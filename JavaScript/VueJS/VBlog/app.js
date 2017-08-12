@@ -1,4 +1,7 @@
 new Vue({
-  el: "";
+  el: '#vue-app',
+  data: {
+  	name: 'baymax'
+  }
 });
 
