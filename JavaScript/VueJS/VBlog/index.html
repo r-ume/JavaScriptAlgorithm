@@ -37,6 +37,14 @@
 			<label>Age: </label>
 			<input type = "text" v-on:keyup.alt.enter = 'logAge' />
 
+			<!-- Another way of data binding -->
+			<h1>Keyboard Events</h1>
+			<label>Name: </label>
+			<input type ="text" v-model='log_name' />
+			<span> {{ log_name }}</span>
+			<label>Age: </label>
+			<input type = "text" v-model='log_age' />
+			<span> {{ log_age }}</span>
 		</div>
 	
 		<script src="app.js"></script>

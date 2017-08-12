@@ -7,7 +7,9 @@ new Vue({
     websiteTag: '<a href = "http://www.thenetninja.co.uk">The Net Ninja Website</a>',
     age: 25,
     x: 0,
-    y: 0
+    y: 0,
+    log_name: '',
+    log_age: ''
   },
   methods: {
     greet: function(time){
