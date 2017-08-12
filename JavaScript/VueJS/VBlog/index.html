@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>VueJS Tutorials</title>
-		<link href="styles.css" rel="stylesheet" />
+		<link href="style.css" rel="stylesheet" />
 		<script src = "https://unpkg.com/vue"></script>
 	</head>
 
@@ -18,6 +18,15 @@
 			<a v-bind:href="website">Yahoo</a>
 			<input type= 'text' v-bind:value = "name" />
 			<p v-html='websiteTag'></p>
+
+			<h1>Events</h1>
+			<!-- I can use @ instead of v-on -->
+			<button @click="add(1)">Add a Year</button>
+			<button v-on:click="subtract(1)">Subtract a Year</button>
+			<button @dblclick="add(10)">Add 10 Year</button>
+			<button v-on:dblclick="subtract(10)">Subtract 10 Year</button>
+			<p>My page is {{ age }}</p>
+			<div id = 'canvas' v-on:mousemove='updateXY'>{{ x }}, {{ y }}</div>
 		</div>
 	
 		<script src="app.js"></script>
