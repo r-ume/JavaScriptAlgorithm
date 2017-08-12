@@ -9,7 +9,15 @@
 
 	<body>
 		<div id="vue-app">
-			<h1>{{ name }} </h1>
+			<h1>{{ greet('afternoon') }}</h1>
+			<p>Name: {{ name }}</p>
+			<p>Job: {{ job }}</p>
+
+			<h1>Data Binding</h1>
+			<!-- how to bind data -->
+			<a v-bind:href="website">Yahoo</a>
+			<input type= 'text' v-bind:value = "name" />
+			<p v-html='websiteTag'></p>
 		</div>
 	
 		<script src="app.js"></script>
