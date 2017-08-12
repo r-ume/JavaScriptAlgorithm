@@ -30,6 +30,13 @@
 
 			<!-- Event Modifier -->
 			<a v-on:click.prevent = 'click' href = "http://www.thenetninja.co.uk">The Net Ninja</a>
+
+			<h1>Keyboard Events</h1>
+			<label>Name: </label>
+			<input type ="text" v-on:keyup.enter = 'logName' />
+			<label>Age: </label>
+			<input type = "text" v-on:keyup.alt.enter = 'logAge' />
+
 		</div>
 	
 		<script src="app.js"></script>
