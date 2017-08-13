@@ -12,7 +12,9 @@ new Vue({
     log_age: '',
     a: 0,
     b: 0,
-    computatedAge: 20
+    computatedAge: 20,
+    available: false,
+    nearby: false
   },
   methods: {
     greet: function(time){
@@ -44,6 +46,12 @@ new Vue({
     },
     addToB: function(){
       return this.b + this.computatedAge;
+    },
+    compClasses: function(){
+      return {
+        available: this.available,
+        nearby: this.nearby
+      }
     }
   }
 });
