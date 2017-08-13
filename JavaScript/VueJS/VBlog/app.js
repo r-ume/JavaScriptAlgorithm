@@ -14,7 +14,9 @@ new Vue({
     b: 0,
     computatedAge: 20,
     available: false,
-    nearby: false
+    nearby: false,
+    success: false,
+    error: false
   },
   methods: {
     greet: function(time){

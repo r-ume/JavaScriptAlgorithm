@@ -66,6 +66,15 @@
 			<div v-bind:class ='compClasses'>
 				<span>Roy</span>
 			</div>
+
+			<h1>Conditionals</h1>
+			<button v-on:click = 'error = !error'>Toggle Error</button>
+			<button v-on:click = 'success = !success'>Toggle Success</button>
+			<!-- if the error property is true -->
+			<p v-if='error'>There has been an error</p>
+			<p v-else-if='success'>Whoooo success!!</p>
+			<p v-show="error">There has been an error</p>
+			<p v-show="success">Whoooo success!!</p>
 		</div>
 	
 		<script src="app.js"></script>
