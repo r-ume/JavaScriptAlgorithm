@@ -9,7 +9,10 @@ new Vue({
     x: 0,
     y: 0,
     log_name: '',
-    log_age: ''
+    log_age: '',
+    a: 0,
+    b: 0,
+    computatedAge: 20
   },
   methods: {
     greet: function(time){
@@ -33,6 +36,14 @@ new Vue({
     },
     logAge: function(){
       console.log('your entered your log');
+    },
+  },
+  computed: {
+    addToA: function(){
+      return this.a + this.computatedAge;
+    },
+    addToB: function(){
+      return this.b + this.computatedAge;
     }
   }
 });
