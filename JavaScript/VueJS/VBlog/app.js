@@ -1,5 +1,26 @@
-new Vue({
-  el: '#vue-app',
+var data = {
+  componentName: 'Yoshi'
+};
+
+Vue.component('greeting', {
+  template: '<p>Hey there, I am {{ componentName }}. <button v-on:click="changeName">Change Name</button></p>',
+  // In a component, data section should return an OBJECT.
+  data: function(){
+    return{
+      componentName: 'Yoshi'
+    }
+    // If you write like below, properties will be affected in all the ranges this component is used.
+    // return data
+  },
+  methods:{
+    changeName: function(){
+      this.componentName = "Mario";
+    }
+  }
+});
+
+const one = new Vue({
+  el: '#vue-app-one',
   data: {
     name: 'baymax',
     job: 'robot',
@@ -24,7 +45,8 @@ new Vue({
       { name: 'Ryu', age: 25 },
       { name: 'Yoshi', age: 35},
       { name: 'Ken', age: 55}
-    ]
+    ],
+    output: 'Your fav food'
   },
   methods: {
     greet: function(time){
@@ -49,6 +71,10 @@ new Vue({
     logAge: function(){
       console.log('your entered your log');
     },
+    readRefs: function(){
+      console.log(this.$refs.test.innerText);
+      this.output = this.$refs.input.value;
+    }
   },
   computed: {
     addToA: function(){
@@ -65,4 +91,19 @@ new Vue({
     }
   }
 });
+
+const two = new Vue({
+  el: "#vue-app-two",
+  data: {
+    title: 'Vue App Two'
+  },
+  methods: {
+    changeName: function(){
+      // a way of accessing the instance one
+      one.name = "Title Change";
+    }
+  }
+});
+
+two.title = "Changed from outside";
 

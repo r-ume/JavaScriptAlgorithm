@@ -8,7 +8,7 @@
 	</head>
 
 	<body>
-		<div id="vue-app">
+		<div id="vue-app-one">
 			<h1>{{ greet('afternoon') }}</h1>
 			<p>Name: {{ name }}</p>
 			<p>Job: {{ job }}</p>
@@ -98,6 +98,23 @@
 				</div>
 			</template>
 
+			<greeting></greeting>
+
+			<h2>Refs</h2>
+			<input type = "text" ref = "input" />
+			<button v-on:click = "readRefs">Submit</button>
+			<p>Your Fav Food {{ output }} </p>
+			<div ref= "test">hello</div>
+
+		</div>
+
+		<h1>Multiple Vue Instances</h1>
+		<div id = "vue-app-two">
+			<p>{{ title }}</p>
+			<button v-on:click = "changeName">
+				Change App One Name
+			</button>
+			<greeting></greeting>
 		</div>
 	
 		<script src="app.js"></script>
