@@ -1,25 +1,27 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <p>{{ greeting() }}</p>
+    <add-blog></add-blog>
   </div>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      title: 'Your first Vue file, wooo!'
-    }
-  },
-  methods: {
-    greeting: function(){
-      return 'baymax';
+  import addBlog from './components/addBlog.vue';
+
+  export default {
+    components: {
+      'add-blog': addBlog
+    },
+    data() {
+      return {
+      }
     }
   }
-}
 </script>
 
-<style>
+<style scoped>
 
+body {
+  margin: 0;
+  font-family: 'Nunito SemiBold';
+}
 </style>
