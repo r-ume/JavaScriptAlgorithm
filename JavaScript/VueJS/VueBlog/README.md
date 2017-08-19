@@ -1,6 +1,8 @@
 # vueblog
 
-> A Vue.js project
+> A Vue.js project 
+> Building this project with studying purpose - not a clean note rather a collection of notes
+
 
 ## Build Setup
 
