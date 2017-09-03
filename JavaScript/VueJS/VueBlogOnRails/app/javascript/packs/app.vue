@@ -1,14 +1,20 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
+  <div>
+    <h1>{{ title }}</h1>
+    <p>{{ greeting() }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
+  data () {
     return {
-      message: "Heldfafdlo QQQVue!"
+      title: "My first vue file"
+    }
+  },
+  methods: {
+    greeting: function(){
+      return 'hoge';
     }
   }
 }
