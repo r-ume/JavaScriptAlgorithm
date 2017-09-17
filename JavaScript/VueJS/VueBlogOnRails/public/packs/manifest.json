@@ -1,11 +1,13 @@
 {
-  "app.css": "/packs/app-551961e63440f3c285de78a7e655b2cc.css",
-  "app.js": "/packs/app-0e7af720f7235ddd3c34.js",
-  "application.js": "/packs/application-f9c7478cf45d18350598.js",
-  "components/employees.js": "/packs/components/employees-498dd5ab4836ef4a875b.js",
-  "components/header.css": "/packs/components/header-377c914abcd186983125742c8b6bdca0.css",
-  "components/header.js": "/packs/components/header-3f9bcf6576ff3f5825ba.js",
-  "home.js": "/packs/home-74d30391096f2dc2de77.js",
-  "main.css": "/packs/main-551961e63440f3c285de78a7e655b2cc.css",
-  "main.js": "/packs/main-144a6ad93778eae4b627.js"
+  "app.css": "/packs/app-27c81b0a248087b2610e1708e76e6e3f.css",
+  "app.js": "/packs/app-b271a93d58c8caaf7a4e.js",
+  "application.js": "/packs/application-83051efdd7d2b01b8d98.js",
+  "components/employees.css": "/packs/components/employees-d41d8cd98f00b204e9800998ecf8427e.css",
+  "components/employees.js": "/packs/components/employees-1a8bd2eadc6ed5062673.js",
+  "components/header.css": "/packs/components/header-24e648839aa31918bceb936aff170ec0.css",
+  "components/header.js": "/packs/components/header-82c8d31b05ed8b17dbb3.js",
+  "home.css": "/packs/home-602694b650f5c10ff630df252b5133e0.css",
+  "home.js": "/packs/home-830ad98546d78baaf7f7.js",
+  "main.css": "/packs/main-27c81b0a248087b2610e1708e76e6e3f.css",
+  "main.js": "/packs/main-dbcd1d1e807e3a9bb99a.js"
 }

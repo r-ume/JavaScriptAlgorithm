@@ -12,9 +12,8 @@
   export default{
     data(){
       return{
-        employees: ['roy', 'yuta', 'jio', 'dafa', 'fuga', 'piyo']
+        employees: ['roy', 'yuta', 'jio', 'dafa', 'fuga']
       }
     }
   }
 </script>
-
