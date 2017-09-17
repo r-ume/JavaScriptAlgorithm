@@ -1,6 +1,8 @@
 import Vue from 'vue/dist/vue.esm'
 import App from './app.vue'
+// import VueResource from 'vue-resource'
 
+// Vue.use(VueResource);
 
 document.addEventListener('DOMContentLoaded', () => {
   // Vue.component('greeting', {

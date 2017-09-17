@@ -1,2 +1,20 @@
+<h1>Employees</h1>
+
 <div id="app">
+  <table>
+    <thead>
+      <tr>
+        <th>Name: {{ name }}</th>
+        <th>Email</th>
+        <th>Manager</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="employee in employees">
+        <td> {{ employee }} </td>
+        <td> {{ employee }} </td>
+        <td> {{ employee }} </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

@@ -1,7 +1,10 @@
 {
   "app.css": "/packs/app-9a0b18d39a193106a62723189290c350.css",
-  "app.js": "/packs/app-2695cdd2902b9f50e72d.js",
-  "application.js": "/packs/application-8270036cad4907e819e8.js",
-  "main.js": "/packs/main-79e00fe3ec3932c97ce0.js",
-  "main.css": "/packs/main-9a0b18d39a193106a62723189290c350.css"
+  "app.js": "/packs/app-2a87cb146d1e71478c67.js",
+  "application.js": "/packs/application-477d9d02b13236f970b5.js",
+  "components/employees.js": "/packs/components/employees-00815def8bc669b4159b.js",
+  "components/header.js": "/packs/components/header-c451302e1d5e8b717575.js",
+  "home.js": "/packs/home-c3d74eb94486b49fcbe7.js",
+  "main.css": "/packs/main-9a0b18d39a193106a62723189290c350.css",
+  "main.js": "/packs/main-84e88cea0417a30c3181.js"
 }

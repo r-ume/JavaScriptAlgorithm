@@ -22,3 +22,5 @@
 uploads/
 .idea/
 .env
+
+public/packs/*
