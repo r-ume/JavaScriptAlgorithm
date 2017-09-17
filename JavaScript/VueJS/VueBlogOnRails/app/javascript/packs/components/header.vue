@@ -8,7 +8,7 @@
   export default{
     data(){
       return{
-        headerTitle: 'Vue Ninjas'
+        headerTitle: 'Vue Employees'
       }
     }
   }

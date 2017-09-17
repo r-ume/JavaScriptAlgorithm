@@ -1,35 +1,34 @@
 <template>
   <div>
-    <!-- <h1>{{ title }}</h1>
-    <p>{{ greeting() }}</p> -->
     <app-header></app-header>
     <employees></employees>
+    <app-footer></app-footer>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
+import Header from './components/header.vue';
 import Employees from './components/employees.vue';
+import Footer from './components/footer.vue';
 
 export default {
   components:{
     'app-header': Header,
-    'employees': Employees
+    'employees':  Employees,
+    'app-footer': Footer
   },
   data () {
     return {
-      // title: "My first vue file",
     }
   },
   methods: {
-    greeting: function(){
-      return 'hoge';
-    }
   }
 }
 </script>
 
 <style lang = 'scss'>
-  @import './home.scss'
-
+  body{
+    margin: 0;
+    font-family: 'Nunito SemiBold';
+  }
 </style>

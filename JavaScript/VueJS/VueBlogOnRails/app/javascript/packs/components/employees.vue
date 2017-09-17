@@ -1,8 +1,12 @@
 <template>
-  <div>
+  <div id = "employess">
     <h1>List of employess</h1>
     <ul>
-      <li v-for='employee in employees'>{{ employee }}</li>
+      <li v-for='employee in employees' 
+          v-on:click = 'employee.show = !employee.show'>
+          <h2>{{ employee.name }}</h2>
+          <h3 v-show='employee.show'>{{ employee.speciality }}</h3>
+      </li>
     </ul>
   </div>
 
@@ -12,8 +16,41 @@
   export default{
     data(){
       return{
-        employees: ['roy', 'yuta', 'jio', 'dafa', 'fuga']
+        employees: [
+          {name: 'roy', speciality: 'Vue Components', show: false },
+          {name: 'crystal', speciality: 'HTML Wizardry', show: false },
+          {name: 'Hitoshi', speciality: 'Click Events', show: false },
+          {name: 'Tango', speciality: 'Conditionals', show:   false },
+          {name: 'Kami', speciality: 'Webpack', show: false },
+          {name: 'Yoshi', speciality: 'Data Diggin', show: false }
+        ]
       }
     }
   }
 </script>
+
+<style scoped>
+  #ninjas{
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li{
+    flex-grow: 1;
+    flex-basis: 300px;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid #222;
+    margin: 10px;
+  }
+</style>
