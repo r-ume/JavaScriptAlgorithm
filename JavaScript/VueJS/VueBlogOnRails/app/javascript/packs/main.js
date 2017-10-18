@@ -2,7 +2,7 @@ import Vue from 'vue/dist/vue.esm'
 import App from './app.vue'
 // import VueResource from 'vue-resource'
 
-// Vue.use(VueResource);
+Vue.use(VueResource);
 
 document.addEventListener('DOMContentLoaded', () => {
   // Vue.component('greeting', {
@@ -28,4 +28,15 @@ document.addEventListener('DOMContentLoaded', () => {
     render: h => h(App)
   });
 
+  var employees = new Vue({
+    el: '#employees',
+    data: {
+      employees: []
+    },
+    created() {
+      this.$http.get('/employees.json').then(function(data){
+        console.log(data);
+      });
+    }
+  });
 });
