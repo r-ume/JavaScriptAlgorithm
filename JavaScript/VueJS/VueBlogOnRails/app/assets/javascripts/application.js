@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
-//= require vue/dist/vue
+//= require vue
+//= require vue-router
+//= require vue-resource
 //= require_tree .
