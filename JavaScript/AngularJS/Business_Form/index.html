@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Business Form</title>
+    <meta name="robots" content="noindex,nofollow">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+    <script src = "app.js"></script>
+</head>
+
+<body ng-app = "App">
+    <div class = "location-bar"></div>
+
+    <!-- Header Nav -->
+    <header class = "container">
+        <nav class = "navbar navbar-default">
+            <div class = "navbar-header">
+                <a href = "#/" class = "navbar-brand">Business Form Application</a>
+            </div>
+            <div class = "navbar-collapse">
+                <ul class = "nav navbar-nav navbar-right">
+                    <li><a href = "#/">A list of business form</a></li>
+                    <li><a href = "#/new">Create a new business form</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header Nav End-->
+
+    <div class = "container" ng-view></div>
+
+    <!-- Template Start -->
+    <script type = "text/ng-template" id = "index-tmpl">
+        <h1>Business Form</h1>
+       　<ul ng-show = "list">
+            <li ng-repeat = "sheet in list">
+                #{{ sheet.id }}
+                {{ sheet.createdAt | date: 'yyyy/MM/dd HH:mm' }}
+                <a ng-href = "#/sheet/{{ sheet.id }}">Take a look at the details of the business form</a>
+            </li>
+        </ul>
+        <div class = "alert alert-info" ng-hide = "list">
+            There is no business form <a href = "#/new" class = "alert-link">Make a new one</a>
+        </div>
+    </script>
+
+    <script type = "text/ng-template" id = "new-tmpl">
+        <h1>Making a Business Form</h1>
+        <!-- no validate name = "sheetForm" access to sheetForm-->
+        <form novalidate name = "sheetForm" ng-submit = "save()">
+            <table class = "table">
+                <colgroup></colgroup>
+                <colgroup span = "3" class = "col-sm"></colgroup>
+                <colgroup></colgroup>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Number</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat = "orderLine in lines">
+                        <td>
+                            <input class = "form-control" type = "text" ng-model = "orderLine.productName" required>
+                        </td>
+                        <td>
+                            <input class = "form-control" type = "number" ng-model = "orderLine.unitPrice" required min = "0" ng-pattern ="/^\d+$/">
+                        </td>
+                        <td>
+                            <input class = "form-control" type = "number" ng-model = "orderLine.count" required min = "0" ng-pattern = "/^\d+$/">
+                        </td>
+                        <td>{{ getSubtotal(orderLine) | number }}</td>
+                        <td>
+                            <button class = "btn btn-default btn-block" type = "button" ng-click="removeLine(orderLine)" ng-disabled = "disabledDelBtn">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan = "3">Total: </td>
+                        <td colspan = "2">{{ getTotalAmount(lines) | number }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class = "alert alert-danger" ng-show="sheetForm.$invalid">
+                <span ng-show = "sheetForm.$error.required">
+                    There should be no spaces
+                </span>
+                <span ng-show = "sheetForm.$error.min">
+                    The mixnimum value for the number and the price is 0
+                </span>
+                <span ng-show = "sheetForm.$error.pattern">
+                    Put the number in the number and price box
+                </span>
+            </div>
+            <div>
+                <button type = "button" class = "btn btn-primary" ng-click = "addLine()">
+                    Add a line
+                </button>
+                <button type = "button" class = "btn btn-danger" ng-click = "initialize()">
+                    Initialize the business form
+                </button>
+                <button type = "submit" class = "btn btn-success" ng-disabled = "sheetForm.$invalid">
+                    Save the business form
+                </button>
+            </div>
+        </form>
+    </script>
+
+    <script type = "text/ng-template" id = "sheet-tmpl">
+        <div ng-show="id">
+            <h1>Details of the business form #{{ id }}</h1>
+            <p>Date created: {{ createdAt | date: 'yyyy/MM/dd HH:mm' }}</p>
+            <table class = "table">
+                <colgroup span = "4" class = "col-md"></colgroup>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Number</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="orderLine in lines">
+                        <td>{{ orderLine.productName }}</td>
+                        <td>{{ orderLine.unitPrice | number }}</td>
+                        <td>{{ orderLine.count | number }}</td>
+                        <td>{{ getSubtotal(orderLine) | number }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan = "3">Total: </td>
+                        <td colspan = "2">{{ getTotalAmount(lines) | number }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class = "alert alert-danger" ng-hide="id">
+            You are trying to take a look at the business form that does not exist. <a href = "#/new">Make a new one</a>
+        </div>
+        <div>
+            <button class = "btn btn-primary" type = "button" ng-click = "addLine()">
+                Add a line for a business form
+            </button>
+            <button class = "btn btn-danger" type = "button" ng-click = "initialize()">
+                Initialize the business form
+            </button>
+        </div>
+    </script>
+    <!--Template End-->
+</body>
+</html>
