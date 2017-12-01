@@ -3,3 +3,4 @@
 node_modules
 famm/gas/dist/*
 package-lock.json
+credentials.json
