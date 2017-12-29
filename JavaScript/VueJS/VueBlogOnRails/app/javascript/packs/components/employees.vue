@@ -8,22 +8,26 @@
           <h3 v-show='employee.show'>{{ employee.speciality }}</h3>
       </li>
     </ul>
+    <button v-on:click = 'deleteEmployee'>Delete an Employee</button> 
   </div>
-
 </template>
 
 <script>
   export default{
+    props: {
+      employees: {
+        type: Array,
+        required: true
+      }
+    },
     data(){
       return{
-        employees: [
-          {name: 'roy', speciality: 'Vue Components', show: false },
-          {name: 'crystal', speciality: 'HTML Wizardry', show: false },
-          {name: 'Hitoshi', speciality: 'Click Events', show: false },
-          {name: 'Tango', speciality: 'Conditionals', show:   false },
-          {name: 'Kami', speciality: 'Webpack', show: false },
-          {name: 'Yoshi', speciality: 'Data Diggin', show: false }
-        ]
+
+      }
+    },
+    methods: {
+      deleteEmployee: function(){
+        this.employees.pop();
       }
     }
   }

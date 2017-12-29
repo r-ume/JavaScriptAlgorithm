@@ -11,6 +11,6 @@ s3.listObjectsV2(listObjectParams, function(error, data){
 
 var listBucketsparams = {};
 s3.listBuckets(listBucketsparams, function(error, data) {
-  if (err) console.log(error, error.stack);
-  else     console.log(data);
+  if (error) console.log(error, error.stack);
+  else       console.log(data);
 });
