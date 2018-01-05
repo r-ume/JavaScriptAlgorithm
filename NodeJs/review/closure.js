@@ -67,3 +67,31 @@ function createClicked() {
 var click = createClicked();
 click();  // Clickしました
 click();  // すでにClickしています
+
+var counter = (function(){
+  var cnt = 0;
+
+  return function(){
+    cnt += 1;
+    console.log(cnt);
+  };
+}());
+
+var makeCounter = function (num) {
+  var startNum = 0;
+
+  return function() {
+    console.log(startNum += num);
+  };
+};
+
+incrementer = makeCounter(1);
+decrementer = makeCounter(-1);
+
+incrementer(); //1
+incrementer(); //2
+incrementer(); //3
+
+decrementer(); //-1
+decrementer(); //-2
+decrementer(); //-3
