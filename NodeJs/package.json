@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.188.0"
+  },
+  "devDependencies": {
+    "pryjs": "^1.0.3"
   }
 }
