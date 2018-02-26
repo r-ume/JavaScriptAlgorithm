@@ -1,0 +1,53 @@
+<div class = "container" ng-controller="TodoListCtrl" ng-init="init()">
+  <h1>Todo Lists</h1>
+
+  <div class = "panel panel-success">
+    <div class = "panel-heading">
+      <span>{{ list.name }}</span>
+    </div>
+
+    <form id = "new_todo" ng-submit="addTodo(todoDescription)">
+      <div class = "input-group">
+        <input type="text" id="todoDescription" class="form-control input-lg" autofocus="autofocus" maxlength="255" ng-model="todoDescription">
+        <button class = "btn btn-success btn-lg" type = "submit">add</button>
+      </div>
+    </form>
+
+    <ul class = "list-group">
+      <!--ng-repeat is like a foreach statement of php-->
+      <li class = "list-group-item" ng-repeat="todo in list.todos" ng-class="{completed: todo.completed}">
+        <div class ="todo-completed">
+          <input type = "checkbox" ng-model = "todo.completed" ng-click="toggleTodo(todo)">
+        </div>
+        <div class = "todo-description">
+          <span>{{ todo.description }}</span>
+          <div class = "todo-buttons pull-right">
+            <button class = "btn btn-danger btn-xs pull-right" type = "button" ng-click="deleteTodo(todo)">
+              <span class = "glyphicon glyphicon-ban-circle"></span>
+            </button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+  <form class = "form-horizontal">
+    <div class = "form-group">
+      <%= label_tag :text, "テキスト", class: "col-md-3 control-label" %>
+      <div class = "col-md-5">
+        <%= text_field_tag :text, "", "ng-model" => "text", class: "form-control" %>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <%= label_tag :tooltipText, "ツールチップのテキスト", class: "col-md-3 control-label" %>
+      <div class = "form-group">
+        <%= text_field_tag :tooltipText, "", "ng-model" => "tooltipText", class: "form-control" %>
+      </div>
+    </div>
+  </form>
+
+  <a href = "#" tooltip="{{tooltipText}}" class = "control-label">{{text}}</a>
