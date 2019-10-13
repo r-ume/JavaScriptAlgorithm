@@ -1,15 +1,15 @@
 // http://qiita.com/nekoneko-wanwan/items/f6979f687246ba089a35
 
 // Declaring variables and functions
-var trapCard = function() {
+const trapCard = function() {
   console.log('trap card activates!') // --2
 }
 
-var sacrificeCard = function(sacrificeName) {
+const sacrificeCard = function(sacrificeName) {
   console.log('I sacrifice' + sacrificeName)
 }
 
-var myTurn = function(callback) {
+const myTurn = function(callback) {
   console.log('My turn!') // -- 1
   callback() // -- 2
 }
@@ -24,7 +24,7 @@ myTurn(function() {
   sacrificeCard('Dark Magician')
 })
 
-myTurn(sacrifice.bind(null, 'Dark Magician'))
+myTurn(sacrificeCard.bind(null, 'Dark Magician'))
 
 // myTurn!
 // Dark Magician!

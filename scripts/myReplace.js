@@ -1,28 +1,28 @@
 function myReplace(query) {
-    var datesArray = {};
-    datesArray.YYYYMMDD   = '20170618';
-    datesArray["YYYY-MM-DD"] = '2017-06-18';
+  const datesArray = {}
+  datesArray.YYYYMMDD = '20170618'
+  datesArray['YYYY-MM-DD'] = '2017-06-18'
 
-    var splitQuery = query.split("@");
-    var length = splitQuery.length;
+  const splitQuery = query.split('@')
+  const length = splitQuery.length
 
-    var queryWithDates = "";
+  let queryWithDates = ''
 
-    for (var cnt = 0; cnt < length; cnt++) {
-    	console.log(splitQuery[cnt]);
-    	console.log(splitQuery[cnt] in datesArray);
-    	console.log(datesArray[splitQuery[cnt]]);
-        if (splitQuery[cnt] in datesArray) {
-            queryWithDates += datesArray[splitQuery[cnt]];
-        }else {
-        		queryWithDates += splitQuery[cnt];  
-        }
+  for (let cnt = 0; cnt < length; cnt++) {
+    console.log(splitQuery[cnt])
+    console.log(splitQuery[cnt] in datesArray)
+    console.log(datesArray[splitQuery[cnt]])
+    if (splitQuery[cnt] in datesArray) {
+      queryWithDates += datesArray[splitQuery[cnt]]
+    } else {
+      queryWithDates += splitQuery[cnt]
     }
-    return queryWithDates;
+  }
+  return queryWithDates
 }
 
-var sql = 'system.old_famm_access_@YYYYMMDD@) system.famm_access_@YYYYMMDD@';
+let sql = 'system.old_famm_access_@YYYYMMDD@) system.famm_access_@YYYYMMDD@'
 
-sql = myReplace(sql);
+sql = myReplace(sql)
 
-console.log(sql);
+console.log(sql)

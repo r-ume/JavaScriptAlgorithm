@@ -1,18 +1,17 @@
-function taskA(){
-  throw new Error('Error');
-  console.log('TaskA');
+function taskA() {
+  throw new Error('Error')
 }
 
-function taskB(){
-  console.log('TaskB');
+function taskB() {
+  console.log('TaskB')
 }
 
-function onRejected(error){
-  console.log("error = " + error)
+function onRejected(error) {
+  console.log('error = ' + error)
 }
 
-var promise = Promise.resolve();
+const promise = Promise.resolve()
 promise
   .then(taskA)
   .then(taskB)
-  .catch(onRejectted);
+  .catch(onRejected)

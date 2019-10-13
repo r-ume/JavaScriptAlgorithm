@@ -27,22 +27,24 @@
 //     .then(finalTask)
 //     .catch(onRejected);
 
-var promise1 = new Promise((resolve, reject) => {
-    reject(1)
-    // setTimeout(resolve, 100, 'hoge');
-}).catch(err => console.log(err));
+const promise1 = new Promise((resolve, reject) => {
+  reject(1)
+  // setTimeout(resolve, 100, 'hoge');
+}).catch(err => console.log(err))
 
-var promise2 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, 'fuga');
-});
+const promise2 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'fuga')
+})
 
-var promise3 = new Promise((resolve, reject) => {
-    setTimeout(resolve, 100, 'piyo');
-});
+const promise3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'piyo')
+})
 
-Promise.all([promise1, promise2, promise3]).then(function(values) {
-    console.log(values);
-}).catch(err => console.log(err));
+Promise.all([promise1, promise2, promise3])
+  .then(function(values) {
+    console.log(values)
+  })
+  .catch(err => console.log(err))
 
 // const envs =  { portfolio_env: 'dev',
 //      storagebucket: 'dev-portfolio-6bfd1.appspot.com',

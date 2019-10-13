@@ -1,97 +1,88 @@
-function func(){
-  var name = 'taro';
-  function greeting(){
-    return 'my name is' + name;
-  }
-  return greeting();
-}
-
-func(); // // My name is taro
-
 function func() {
-  var lastName = 'suzuki';
-  function greeting(firstName) {
-    return 'My name is ' + lastName + ' ' + firstName;
+  const name = 'taro'
+  function greeting() {
+    return 'my name is' + name
   }
-  return greeting;
+  return greeting()
 }
 
-var f = func();
-f('taro');    // My name is suzuki taro
-f('hanako');  // My name is suzuki hanako
+func() // // My name is taro
 
+function func2() {
+  const lastName = 'suzuki'
+  function greeting(firstName) {
+    return 'My name is ' + lastName + ' ' + firstName
+  }
+  return greeting
+}
+
+const f = func2()
+f('taro') // My name is suzuki taro
+f('hanako') // My name is suzuki hanako
 
 function box() {
-  var val = undefined;
+  let val = undefined
+
   return {
-    set: function(newVal){
-      val = newVal;
+    set: function(newVal) {
+      val = newVal
     },
-    get: function(){
-      return val;
+    get: function() {
+      return val
     },
-    type: function(){
-      return typeof val;
-    }
-  };
+    type: function() {
+      return typeof val
+    },
+  }
 }
 
-var b = box();
-b.type();    // undefined
-b.set(10);
-b.get();     // 10
-b.type();    // "number"
+const b = box()
+b.type() // undefined
+b.set(10)
+b.get() // 10
+b.type() // "number"
 
 function counter() {
-  var count = 0;
+  let count = 0
   return function() {
-    return ++count;
+    return ++count
   }
 }
 
-var count = counter();
-count();  // 1
-count();  // 2
+const count = counter()
+count() // 1
+count() // 2
 
 function createClicked() {
-  var isClicked = false;
+  let isClicked = false
   return function() {
     if (isClicked) {
-      return 'すでにClickしています';
+      return 'すでにClickしています'
     }
-    isClicked = true;
-    return 'Clickしました';
+    isClicked = true
+    return 'Clickしました'
   }
 }
 
-var click = createClicked();
-click();  // Clickしました
-click();  // すでにClickしています
+const click = createClicked()
+click() // Clickしました
+click() // すでにClickしています
 
-var counter = (function(){
-  var cnt = 0;
-
-  return function(){
-    cnt += 1;
-    console.log(cnt);
-  };
-}());
-
-var makeCounter = function (num) {
-  var startNum = 0;
+const makeCounter = function(num) {
+  let startNum = 0
 
   return function() {
-    console.log(startNum += num);
-  };
-};
+    console.log((startNum += num))
+  }
+}
 
-incrementer = makeCounter(1);
-decrementer = makeCounter(-1);
+const incrementer = makeCounter(1)
+const decrementer = makeCounter(-1)
 
-incrementer(); //1
-incrementer(); //2
-incrementer(); //3
+incrementer() //1
+incrementer() //2
+incrementer() //3
 
-decrementer(); //-1
-decrementer(); //-2
-decrementer(); //-3
+decrementer() //-1
+decrementer() //-2
+decrementer() //-3

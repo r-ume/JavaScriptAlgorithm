@@ -1,16 +1,16 @@
-var AWS = require('aws-sdk');
+const AWS = require('aws-sdk')
 
-var s3 = new AWS.S3();
-var listObjectParams = {
+const s3 = new AWS.S3()
+const listObjectParams = {
   Bucket: 'amiry-dev',
-};
-s3.listObjectsV2(listObjectParams, function(error, data){
-  if (error) console.log(error, error.stack);
-  else       console.log(data);
-});
+}
+s3.listObjectsV2(listObjectParams, function(error, data) {
+  if (error) console.log(error, error.stack)
+  else console.log(data)
+})
 
-var listBucketsparams = {};
+const listBucketsparams = {}
 s3.listBuckets(listBucketsparams, function(error, data) {
-  if (error) console.log(error, error.stack);
-  else       console.log(data);
-});
+  if (error) console.log(error, error.stack)
+  else console.log(data)
+})
