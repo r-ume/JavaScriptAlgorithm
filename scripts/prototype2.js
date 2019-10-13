@@ -2,22 +2,23 @@
 
 // 1.
 function Dog() {}
-Dog.prototype.bark = function(){
-    console.log('bark');
-};
 
-var dog = new Dog();
-dog.bark();
+Dog.prototype.bark = function() {
+  console.log('bark')
+}
+
+const dog = new Dog()
+dog.bark()
 
 // 2.
-function Dog(){
-    this.bark = function(){
-        console.log('bark');
-    };
-};
+function Dog2() {
+  this.bark = function() {
+    console.log('bark')
+  }
+}
 
-var dog = new Dog();
-dog.bark();
+const dog2 = new Dog2()
+dog2.bark()
 
 // Which is better? and what is the difference?
 
@@ -32,7 +33,3 @@ dog.bark();
     // return this;
    }
  */
-
-
-
-

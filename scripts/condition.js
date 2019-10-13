@@ -4,8 +4,8 @@ const hoge = () => {
 }
 
 const fuga = () => {
-console.log('fuga')
-	return { w: '122' } 
+  console.log('fuga')
+  return { w: '122' }
 }
 
 if (hoge() && fuga()) {
