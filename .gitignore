@@ -1,5 +1,5 @@
 .idea/
-*.DS_Store
+.DS_Store
 node_modules
-famm/gas/dist/*
-credentials.json
+
+typescript/dist/*.js
