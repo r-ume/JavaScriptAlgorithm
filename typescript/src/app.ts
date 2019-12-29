@@ -5,6 +5,7 @@ import * as playgroundEnum from './enum'
 import { Add, Substract, Multiply, Divide } from './calculator'
 
 console.log(HelloImpl.greeting('typescript!'))
+console.log(HelloImpl.greeting())
 
 const playground = new Playground("romukey's typescript playground")
 console.log({ keyword: playground.getKeyword() })

@@ -1,10 +1,12 @@
 export interface HelloInterface {
-  greeting(name: string): string
+  greeting(name?: string): string
 }
 
 export class HelloImpl implements HelloInterface {
-  public greeting(name: string): string {
-    return `Hello ${name}`
+  public greeting(name?: string): string {
+    if (name === undefined) return "romukey"
+
+    return `Hello ${name.toUpperCase()}`
   }
 }
 
