@@ -18,6 +18,13 @@ let employee: {
   name: string
 }
 
+export type User = {
+  age?: number
+  name?: string
+}
+
+export const registerUser = (user: User) => {}
+
 export function toString(): void {
   console.log({ age, word, isUpdated, fruits, values, employee })
 }

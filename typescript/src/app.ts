@@ -1,6 +1,6 @@
 import HelloImpl from './interface/hello'
 import Playground from './playground'
-import { toString, waitString, waitNumber, waitAll } from './type_annotations'
+import { toString, waitString, waitNumber, waitAll, registerUser, User } from './type_annotations'
 import * as playgroundEnum from './enum'
 import { Add, Substract, Multiply, Divide } from './calculator'
 
@@ -24,6 +24,20 @@ waitNumber(1000).then((res) => console.log({ res }))
 const asyncFunc = async (): Promise<[string, number, string]> => {
   return await waitAll()
 }
+
+const user1 = {
+  age: 26,
+  name: 'Taro',
+  gender: 'male',
+}
+
+// const user2 = {
+//   gender: 'male',
+//   graduate: 'Tokyo',
+// }
+
+registerUser(user1)
+// registerUser(user2) // no properies in common in user2
 
 console.log(asyncFunc())
 
