@@ -17,16 +17,15 @@ console.log({ keyword: playground.getKeyword() })
 // type_annotations
 toString()
 
-waitString(1000).then(res => console.log({ res }))
+waitString(1000).then((res) => console.log({ res }))
 
-waitNumber(1000).then(res => console.log({ res }))
+waitNumber(1000).then((res) => console.log({ res }))
 
-const asyncFunc = async () => {
-  const [a, b, c] = await waitAll()
-  console.log({ a, b, c })
+const asyncFunc = async (): Promise<[string, number, string]> => {
+  return await waitAll()
 }
 
-asyncFunc()
+console.log(asyncFunc())
 
 // enum
 console.log({ mediaType: playgroundEnum.getMedia('Forbes') })

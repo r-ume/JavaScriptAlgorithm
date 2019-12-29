@@ -9,15 +9,14 @@ const word = 'playground'
 const isUpdated = true
 
 // array
-let fruits: string[] = ['Apple', 'Orange', 'Banana']
-let values: (string | number)[] = ['Apple', 2, 'Orange', 3, 4, 'Banana']
+const fruits: string[] = ['Apple', 'Orange', 'Banana']
+const values: (string | number)[] = ['Apple', 2, 'Orange', 3, 4, 'Banana']
 
 // object
 let employee: {
   id: number
   name: string
 }
-employee = { id: 101, name: 'first employee' }
 
 export function toString(): void {
   console.log({ age, word, isUpdated, fruits, values, employee })
@@ -25,13 +24,13 @@ export function toString(): void {
 
 // promise
 export const waitString = (duration: number): Promise<string> => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(`${duration}ms passed`), duration)
   })
 }
 
 export const waitNumber = (duration: number): Promise<number> => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(duration), duration)
   })
 }

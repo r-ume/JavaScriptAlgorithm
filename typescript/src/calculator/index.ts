@@ -15,6 +15,6 @@ export function Multiply(x: number, y?: number): number {
 }
 
 // default parameter
-export function Divide(x: number, y: number = 2): number {
+export function Divide(x: number, y = 2): number {
   return x / y
 }
