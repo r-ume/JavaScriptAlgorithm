@@ -4,9 +4,11 @@ import { toString, waitString, waitNumber, waitAll } from './type_annotations'
 import * as playgroundEnum from './enum'
 import { Add, Substract, Multiply, Divide } from './calculator'
 
+// interface
 console.log(HelloImpl.greeting('typescript!'))
 console.log(HelloImpl.greeting())
 
+// playground
 const playground = new Playground("romukey's typescript playground")
 console.log({ keyword: playground.getKeyword() })
 playground.setKeyword('new keyword')
@@ -26,8 +28,10 @@ const asyncFunc = async () => {
 
 asyncFunc()
 
+// enum
 console.log({ mediaType: playgroundEnum.getMedia('Forbes') })
 
+// calculator
 console.log(Add(3, 5))
 console.log(Substract(6, 2))
 console.log(Multiply(3))
